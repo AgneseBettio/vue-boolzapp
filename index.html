@@ -20,7 +20,7 @@
         <div class="box contactsDesk">
             <div class="toolbar box-pad">
                 <div class="sm-imgbox">
-
+                    <img :src="loadedPic" alt="loaded profile pic">
                 </div>
                 <div class="growth1">
 
@@ -59,7 +59,7 @@
                 <!-- v-for -->
                 <div class="contactlist box-pad" v-for = "contact in usersList">
                     <div class="md-imgbox">
-                        <img :src="personalAvatar">
+                        <img :src="contact.avatar">
                     </div>
                     <div class="messagePreview growth1 f-col box-pad">
                         <h5>{{contact.name}}</h5>
@@ -95,17 +95,21 @@
                 </div>
 
             </div>
-            <div class="chatArea box-pad">
-                <div class="chatIn box-pad">   
-                    <span class=" inMsg">messaggio</span>
+            <div class="chatArea" v-if="chatAttiva">
+                <!-- facciata vuota se nessuna chat attiva -->
+            </div>
+            <div class="chatArea box-pad" v-for="message in usersList[0].messages">
+                <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
+                    <span class="outMsg">{{message.text}}</span>
+                    <span class="out-arrow"></span>
+                    <span class="msg-timer">22</span>
+                </div>                
+                <div class="chatIn box-pad" v-else>   
+                    <span class=" inMsg">{{message.text}}</span>
                     <span class="in-arrow"></span>
                     <span class="msg-timer">22</span>
                 </div>
-                <div class="chatOut box-pad">  
-                    <span class="outMsg">messaggio</span>
-                    <span class="out-arrow"></span>
-                    <span class="msg-timer">22</span>
-                </div>
+              
             </div>
             <div class="toolbar box-pad">
                 <div class="sm-iconbox">

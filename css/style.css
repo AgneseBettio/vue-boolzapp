@@ -114,7 +114,6 @@
 }
 .contactlist{
     display: flex;
-    background-color: blue;
 }
 .md-imgbox {
     height: 50px;
@@ -194,4 +193,5 @@ input {
     display: inline-block;
     position: absolute;
     font-size: 10px;
+    transform: translateY(35px);
 }

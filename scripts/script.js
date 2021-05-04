@@ -2,7 +2,7 @@ const app = new Vue({
     el: "#root",
     data: {
         usersList: usersList,
-        personalAvatar : 'img/avatar_6.jpg',
-      
+        loadedPic : 'img/avatar_io.jpg',
+        chatAttiva: false,               
     }
 })
