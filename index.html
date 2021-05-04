@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
     <title>boolzapp</title>
@@ -57,7 +58,7 @@
             </div>
             <div class="contactPreview box-pad">
                 <!-- v-for -->
-                <div class="contactlist box-pad" v-for = "contact in usersList">
+                <div class="contactlist box-pad" v-for = "(contact, index) in usersList" @click="openChatOnClick(contact)">
                     <div class="md-imgbox">
                         <img :src="contact.avatar">
                     </div>
@@ -72,13 +73,15 @@
         </div>
         <div class="box chatDesk">
             <div class="toolbar box-pad">
-                <div class="contactlist box-pad">
-                    <div class="sm-imgbox">
-                        <img src="">
-                    </div>
-                    <div class="messagePreview growth1 f-col box-pad">
-                        <h5>nome</h5>
-                        <p>qualcosa</p>
+                <div v-if="activeChat">
+                    <div class="contactlist box-pad" v-if="activeChat">
+                        <div class="sm-imgbox">
+                            <img :src="activeChat.avatar">
+                        </div>
+                        <div class="messagePreview growth1 f-col box-pad">
+                            <h5>{{activeChat.name}}</h5>
+                            <p class="smaller">{{'ultimo accesso alle ore'}}</p>
+                        </div>
                     </div>
                 </div>
                 <div class="growth1">
@@ -95,21 +98,19 @@
                 </div>
 
             </div>
-            <div class="chatArea" v-if="chatAttiva">
-                <!-- facciata vuota se nessuna chat attiva -->
-            </div>
-            <div class="chatArea box-pad" v-for="message in usersList[0].messages">
-                <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
-                    <span class="outMsg">{{message.text}}</span>
-                    <span class="out-arrow"></span>
-                    <span class="msg-timer">22</span>
-                </div>                
-                <div class="chatIn box-pad" v-else>   
-                    <span class=" inMsg">{{message.text}}</span>
-                    <span class="in-arrow"></span>
-                    <span class="msg-timer">22</span>
-                </div>
-              
+            <div class="chatArea box-pad" >
+                <div v-for="message in activeChat.messages" v-if="activeChat">        
+                    <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
+                        <span class="outMsg">{{message.text}}</span>
+                        <span class="out-arrow"></span>
+                        <span class="msg-timer">{{convertDateToTime(message.date)}}</span>
+                    </div>                
+                    <div class="chatIn box-pad" v-else>   
+                        <span class=" inMsg">{{message.text}}</span>
+                        <span class="in-arrow"></span>
+                        <span class="msg-timer">{{convertDateToTime(message.date)}}</span>
+                    </div>   
+                </div>           
             </div>
             <div class="toolbar box-pad">
                 <div class="sm-iconbox">

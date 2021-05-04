@@ -4,6 +4,9 @@
     box-sizing: border-box;
     font-family: 'Barlow', sans-serif;
 }
+.smaller {
+    font-size: 10px;
+}
 .growth1 {
     flex-grow: 1;
 }
@@ -12,7 +15,6 @@
     flex-direction: column;
     justify-content: center;
 }
-
 .aesthetic {
     background-color: #009788;
     width: 100vw;
@@ -115,6 +117,9 @@
 .contactlist{
     display: flex;
 }
+.contactlist:hover{
+    cursor: pointer;
+}
 .md-imgbox {
     height: 50px;
     width: 50px;
@@ -131,7 +136,6 @@
     flex: 1 1 auto;
     background-image: url("../img/mine.jpg");
     overflow-y: scroll;
-    border-top: 2px solid #D1D1D1;
     display: flex;
     flex-direction: column;
 }
