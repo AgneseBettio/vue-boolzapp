@@ -1,6 +1,8 @@
 const app = new Vue({
-    el: "#app",
+    el: "#root",
     data: {
-        usersList: userlist,
+        usersList: usersList,
+        personalAvatar : 'img/avatar_6.jpg',
+      
     }
 })

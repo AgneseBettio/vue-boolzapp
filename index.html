@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <!-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
 
     <title>boolzapp</title>
 </head>
@@ -15,36 +16,116 @@
     <div class="aesthetic">       
     </div>
 
-    <main class="main-container">
+    <main class="main-container" id="root">
         <div class="box contactsDesk">
             <div class="toolbar box-pad">
+                <div class="sm-imgbox">
+
+                </div>
+                <div class="growth1">
+
+                </div>
+                <div class="sm-iconbox">
+                    <i class="fa fa-circle-o-notch" aria-hidden="true"></i>
+                </div>
+                <div class="sm-iconbox">
+                    <i class="fa fa-comment" aria-hidden="true"></i>
+                </div>
+                <div class="sm-iconbox">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </div>
 
             </div>
             <div class="silent-mode box-pad">
+                <div class="alert-ibox">
+                    <i class="fa fa-bell-slash" aria-hidden="true"></i>
+                </div>
+                <div class="f-col box-pad">
+                    <h5>Ricevi notifiche di nuovi messaggi</h5>
+                    <a href="#">attiva notifiche desktop</a>
+                </div>
 
             </div>
-            <div class="search box-pad">
-                <input type="text">
+            <div class="search-box box-pad">
+                <div class="search">
+                    <span class="search-icon">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                    </span>
+                    <input type="text" placeholder="Cerca o inizia una nuova chat">
+                </div>
                 <!-- v-mode x ricerca chat -->
             </div>
             <div class="contactPreview box-pad">
                 <!-- v-for -->
-            </div>
+                <div class="contactlist box-pad" v-for = "contact in usersList">
+                    <div class="md-imgbox">
+                        <img :src="personalAvatar">
+                    </div>
+                    <div class="messagePreview growth1 f-col box-pad">
+                        <h5>{{contact.name}}</h5>
+                        <p>{{'non ci sono messaggi!'}}</p>
+                    </div>
 
+                </div>
+
+            </div>
         </div>
         <div class="box chatDesk">
             <div class="toolbar box-pad">
+                <div class="contactlist box-pad">
+                    <div class="sm-imgbox">
+                        <img src="">
+                    </div>
+                    <div class="messagePreview growth1 f-col box-pad">
+                        <h5>nome</h5>
+                        <p>qualcosa</p>
+                    </div>
+                </div>
+                <div class="growth1">
+
+                </div>
+                <div class="sm-iconbox">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+                <div class="sm-iconbox">
+                    <i class="fa fa-paperclip" aria-hidden="true"></i>
+                </div>
+                <div class="sm-iconbox">
+                    <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+                </div>
 
             </div>
-            <div class="chatArea box-pad"></div>
+            <div class="chatArea box-pad">
+                <div class="chatIn box-pad">   
+                    <span class=" inMsg">messaggio</span>
+                    <span class="in-arrow"></span>
+                    <span class="msg-timer">22</span>
+                </div>
+                <div class="chatOut box-pad">  
+                    <span class="outMsg">messaggio</span>
+                    <span class="out-arrow"></span>
+                    <span class="msg-timer">22</span>
+                </div>
+            </div>
             <div class="toolbar box-pad">
-                <input type="text">
+                <div class="sm-iconbox">
+                    <i class="fa fa-smile-o" aria-hidden="true"></i>
+                </div>
+                
+                <div class="keyboard-box growth1">
+                    <input type="text" placeholder="Scrivi un messaggio">
+                </div>
+                
+                <div class="sm-iconbox">
+                    <i class="fa fa-microphone" aria-hidden="true"></i>
+                </div>
+                
             </div>
         </div>    
     </main>
    
     
-    <!-- <script src="scripts/dataList.js"></script>
-    <script src="scripts/script.js"></script>  -->
+    <script src="scripts/dataList.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 </html>
