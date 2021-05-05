@@ -110,7 +110,7 @@
 }
 .contactPreview {
     flex: 1 0 auto;
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
@@ -135,7 +135,7 @@
 .chatArea {
     flex: 1 1 auto;
     background-image: url("../img/mine.jpg");
-    overflow-y: scroll;
+    overflow-y: auto;
     display: flex;
     flex-direction: column;
 }
