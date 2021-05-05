@@ -58,7 +58,7 @@
             </div>
             <div class="contactPreview box-pad">
                 <!-- v-for -->
-                <div class="contactlist box-pad" v-for = "(contact, index) in usersList" @click="openChatOnClick(contact)">
+                <div class="contactlist box-pad" v-for = "(contact, index) in searchAContactList(searchContact)" @click="openChatOnClick(contact)">
                     <div class="md-imgbox">
                         <img :src="contact.avatar">
                     </div>
@@ -117,7 +117,7 @@
                 </div>
                 
                 <div class="keyboard-box growth1">
-                    <input type="text" placeholder="Scrivi un messaggio">
+                    <input type="text" v-model ="writeAMsg" @keyup.enter="sendAMsg()" placeholder="Scrivi un messaggio">
                 </div>
                 
                 <div class="sm-iconbox">
