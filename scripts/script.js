@@ -24,9 +24,10 @@ const app = new Vue({
         sendAMsg() {
             if (this.writeAMsg) {
                 const currentDate = new Date();
+                console.log(currentDate)
                 this.activeChat.messages.push(
                     {
-                        date: currentDate.getHours() + ":" + currentDate.getMinutes(),
+                        date: currentDate,
                         text: this.writeAMsg,
                         status: 'sent'
                     }
@@ -35,7 +36,7 @@ const app = new Vue({
                 setTimeout(() => {
                     this.activeChat.messages.push(
                         {
-                            date: currentDate.getHours() + ":" + currentDate.getMinutes(),
+                            date: currentDate,
                             text: "ok!",
                             status: 'received'
                         }
@@ -46,7 +47,7 @@ const app = new Vue({
         },
         //funzione per filtrare i contatti
         searchAContactList(search) {
-            return this.usersList.filter(element => element.name.includes(search));
+            return this.usersList.filter(element => element.name.toLowerCase().includes(search.toLowerCase()));
         }
     },
     computed: {
