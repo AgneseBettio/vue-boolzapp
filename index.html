@@ -67,7 +67,7 @@
                     </div>
                     <div class="messagePreview growth1 f-col box-pad">
                         <h5>{{contact.name}}</h5>
-                        <p> non ci sono nuovi messaggi</p>
+                        <p> {{lastReceivedMessage(index)}} <span> {{selectLastAccess(index)}} </span></p>
                     </div>
                 </div>
             </div>
@@ -81,7 +81,7 @@
                         </div>
                         <div class="messagePreview growth1 f-col box-pad">
                             <h5>{{activeChat.name}}</h5>
-                            <p class="smaller">ultimo accesso ore {{ selectLastAccess }}</p>
+                            <p class="smaller">ultimo accesso ore {{ActiveChatLastAccess}}</p>
                         </div>
                     </div>
                 </div>
