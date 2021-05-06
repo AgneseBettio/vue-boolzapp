@@ -8,6 +8,7 @@ const app = new Vue({
         searchContact: "",
         //v-model imput scrivi in chat
         writeAMsg: "",
+        messageIndex: null,
     },
 
     methods: {
@@ -24,12 +25,12 @@ const app = new Vue({
         sendAMsg() {
             if (this.writeAMsg) {
                 const currentDate = new Date();
-                console.log(currentDate)
                 this.activeChat.messages.push(
                     {
                         date: currentDate,
                         text: this.writeAMsg,
-                        status: 'sent'
+                        status: 'sent',
+                        popupActive : false
                     }
                 )
                 this.writeAMsg = "";
@@ -38,17 +39,30 @@ const app = new Vue({
                         {
                             date: currentDate,
                             text: "ok!",
-                            status: 'received'
+                            status: 'received',
+                            popupActive : false
                         }
                     )
                 }, 1000);
 
             }
         },
-        //funzione per filtrare i contatti
-        searchAContactList(search) {
-            return this.usersList.filter(element => element.name.toLowerCase().includes(search.toLowerCase()));
-        }
+      
+
+        //funzione per aprire tendina 
+        showDroppedMenu(i) {
+            let currentMessage = this.activeChat.messages[i];
+
+            currentMessage.popupActive = true
+        },
+        //funzione per chiudere tendina 
+        closeDrop() {
+            
+        },    
+        //funzione per cancellare messaggio
+        deleteMsg(index) {
+            return this.activeChat.messages.splice(index, 1)
+        },
     },
     computed: {
         //creo funzione per recuperare ultimo accesso utente  
@@ -59,6 +73,19 @@ const app = new Vue({
             const lastMsgDate = lastReceivedMsg[lastReceivedMsg.length - 1].date
             return this.convertDateToTime(lastMsgDate)
         },
+          //funzione per filtrare i contatti
+        searchAContactList() {
+            return this.usersList.filter((element) => {
+                return element.name.toLowerCase().startsWith(this.searchContact.toLowerCase());
+            });
+        },
+        //creo funzione per recuperare ultimo messaggio utente 
+        //Questa per ultimo messagio chat attiva - devo cambiare ciclo v-for
+        lastReceivedMessage() {
+            const lastReceivedText = this.activeChat.messages.filter((msg) => msg.status === 'received');
+            const lastText = lastReceivedText[lastReceivedText.length - 1].text
+            return lastText;
+        }
     },
 
-})
+});

@@ -53,18 +53,21 @@
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
                     <input type="text" v-model="searchContact" placeholder="Cerca o inizia una nuova chat">
+                    <span class="search-icon" v-if="searchContact" @click="searchContact = ''">
+                        <i class="fa fa-times" aria-hidden="true"></i>
+                    </span>                    
                 </div>
                 <!-- v-mode x ricerca chat -->
             </div>
             <div class="contactPreview box-pad">
                 <!-- v-for -->
-                <div class="contactlist box-pad" v-for = "(contact, index) in searchAContactList(searchContact)" @click="openChatOnClick(contact)">
+                <div class="contactlist box-pad" v-for = "(contact, index) in searchAContactList" @click="openChatOnClick(contact)">
                     <div class="md-imgbox">
                         <img :src="contact.avatar">
                     </div>
                     <div class="messagePreview growth1 f-col box-pad">
                         <h5>{{contact.name}}</h5>
-                        <p>{{'non ci sono messaggi!'}}</p>
+                        <p>{{lastReceivedMessage}}</p>
                     </div>
 
                 </div>
@@ -98,16 +101,31 @@
 
             </div>
             <div class="chatArea box-pad" >
-                <div v-for="message in activeChat.messages" v-if="activeChat">        
+                <div v-for="(message,index) in activeChat.messages" v-if="activeChat">        
                     <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
-                        <span class="outMsg">{{message.text}}</span>
+                        <div class="outMsg">{{message.text}}</div>
                         <span class="out-arrow"></span>
-                        <span class="msg-timer">{{convertDateToTime(message.date)}}</span>
+                        <span class="msg-timer r-time">{{convertDateToTime(message.date)}}</span>
+                        <span class="drop-menu r-drop">
+                            <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
+                            <span class="r-dropped droppedMenu" v-show="message.popupActive">
+                                <div>message info</div>
+                                <div @click="deleteMsg(index)">delete message</div>
+                            </span>
+                        </span>
+                      
                     </div>                
                     <div class="chatIn box-pad" v-else>   
-                        <span class=" inMsg">{{message.text}}</span>
+                        <div class=" inMsg">{{message.text}}</div>
                         <span class="in-arrow"></span>
-                        <span class="msg-timer">{{convertDateToTime(message.date)}}</span>
+                        <span class="msg-timer l-time">{{convertDateToTime(message.date)}}</span>
+                        <span class="drop-menu l-drop" >
+                            <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
+                            <span class="l-dropped droppedMenu" v-if="message.popupActive">
+                                <div>message info</div>
+                                <div @click="deleteMsg(index)">delete message</div>
+                            </span>
+                        </span>
                     </div>   
                 </div>           
             </div>

@@ -151,29 +151,27 @@ input {
     padding: 3px 5px;
 }
 .chatIn {
+    position: relative;
     padding: 5px 8px;
     display: flex;
 }
 .chatOut{
+    position: relative;
     padding: 5px 8px;
     display: flex;
     flex-direction: row-reverse;
 }
 .inMsg {
     border-radius: 4px;
-    display: inline-block;
     padding: 15px 8px;
     margin-left: 10px;
     background-color: white;
-    position: relative;
 }
 .outMsg{
     border-radius: 4px;
-    display: inline-block;
     padding: 15px 8px;
     margin-right: 10px;
     background-color: #B4D085;
-    position: relative;
 }
 .out-arrow  {
     position: absolute;
@@ -197,5 +195,45 @@ input {
     display: inline-block;
     position: absolute;
     font-size: 10px;
-    transform: translateY(35px);
+    color:#3d3d3d98;
+    bottom: 8px;
+}
+.r-time{
+    right: 30px;
+}
+.l-time{
+    left: 30px;
+}
+.drop-menu{
+    position: absolute;
+    font-size: 10px;
+    color:#3d3d3d98;
+}
+.r-drop{
+    right: 25px;
+}
+.l-drop{
+    left: 25px;
+}
+.drop-menu:hover{
+    cursor: pointer;
+    color:rgba(61, 61, 61, 0.4)
+}
+.droppedMenu{
+    display: block;
+    padding: 5px 8px;
+    position: absolute;
+    background-color: #ffffff;
+    font-size: 16px;
+    color: black;
+    min-width: 150px;
+    top: 13px;
+    border: 2px solid #D1D1D1;
+    border-radius: 8px;
+}
+.l-droppedm{
+    left: 3px
+}
+.r-dropped{
+    right: 3px;
 }
