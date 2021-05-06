@@ -53,25 +53,25 @@ const app = new Vue({
             currentMessage.popupActive = !currentMessage.popupActive
         },
         //funzione per cancellare messaggio
-        deleteMsg(index) {
-            return this.activeChat.messages.splice(index, 1)
+        deleteMsg(i) {
+            return this.activeChat.messages.splice(i, 1)
         },
         //milestone 5 - recupero ultimo messaggio e accesso
         lastReceivedMessage(i) {
-            const lastReceivedText = this.usersList[i].messages.filter((msg) => msg.status === 'received');
-            const lastText = lastReceivedText[lastReceivedText.length - 1].text
+            const lastChatText = this.usersList[i].messages;
+            const lastText = lastChatText[lastChatText.length - 1].text
             return lastText;
         },
         selectLastAccess(i) {
-            const lastReceivedMsg = this.usersList[i].messages.filter((msg) => msg.status === 'received');
-            const lastMsgDate = lastReceivedMsg[lastReceivedMsg.length - 1].date
+            const lastChatMsg = this.usersList[i].messages;
+            const lastMsgDate = lastChatMsg[lastChatMsg.length - 1].date
             return this.convertDateToTime(lastMsgDate)
         }
     },
     computed: {
         //creo funzione per recuperare ultimo accesso utente  
         ActiveChatLastAccess() {
-            const lastReceivedMsg = this.activeChat.messages.filter((msg) => msg.status === 'received');
+            const lastReceivedMsg = this.activeChat.messages.filter((mgs) => mgs.status === 'received');
             const lastMsgDate = lastReceivedMsg[lastReceivedMsg.length - 1].date
             return this.convertDateToTime(lastMsgDate)
         },
