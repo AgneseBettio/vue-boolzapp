@@ -67,9 +67,8 @@
                     </div>
                     <div class="messagePreview growth1 f-col box-pad">
                         <h5>{{contact.name}}</h5>
-                        <p>{{lastReceivedMessage}}</p>
+                        <p> non ci sono nuovi messaggi</p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -101,33 +100,20 @@
 
             </div>
             <div class="chatArea box-pad" >
-                <div v-for="(message,index) in activeChat.messages" v-if="activeChat">        
-                    <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
-                        <div class="outMsg">{{message.text}}</div>
-                        <span class="out-arrow"></span>
-                        <span class="msg-timer r-time">{{convertDateToTime(message.date)}}</span>
-                        <span class="drop-menu r-drop">
-                            <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
-                            <span class="r-dropped droppedMenu" v-show="message.popupActive">
-                                <div>message info</div>
-                                <div @click="deleteMsg(index)">delete message</div>
-                            </span>
-                        </span>
-                      
-                    </div>                
-                    <div class="chatIn box-pad" v-else>   
-                        <div class=" inMsg">{{message.text}}</div>
-                        <span class="in-arrow"></span>
-                        <span class="msg-timer l-time">{{convertDateToTime(message.date)}}</span>
-                        <span class="drop-menu l-drop" >
-                            <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
-                            <span class="l-dropped droppedMenu" v-if="message.popupActive">
-                                <div>message info</div>
-                                <div @click="deleteMsg(index)">delete message</div>
-                            </span>
-                        </span>
-                    </div>   
-                </div>           
+                <div class="chat" v-for="(message,index) in activeChat.messages" :key="index"
+                    :class="{chatIn: message.status === 'received',
+                    chatOut: message.status === 'sent'}">
+                    {{message.text}}
+                    <div class="arrow-chat" :class="{ white: message.status === 'received',
+                        green: message.status === 'sent'}">
+                    </div>
+                    <i class="fa fa-chevron-down drop-menu" @click="showDroppedMenu(index)"></i>
+                    <div class="droppedMenu" v-if="message.popupActive">
+                        <p>message info</p>
+                        <p @click="deleteMsg(index)">delete message</p>
+                    </div>
+                    <div class="msg-timer">{{convertDateToTime(message.date)}}</div>
+                </div>
             </div>
             <div class="toolbar box-pad">
                 <div class="sm-iconbox">
@@ -136,8 +122,7 @@
                 
                 <div class="keyboard-box growth1">
                     <input type="text" v-model ="writeAMsg" @keyup.enter="sendAMsg()" placeholder="Scrivi un messaggio">
-                </div>
-                
+                </div>                
                 <div class="sm-iconbox">
                     <i class="fa fa-microphone" aria-hidden="true"></i>
                 </div>
@@ -151,3 +136,32 @@
     <script src="scripts/script.js"></script>
 </body>
 </html>
+
+
+            <!-- <div v-for="(message,index) in activeChat.messages" v-if="activeChat">        
+                <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
+                    <div class="outMsg">{{message.text}}</div>
+                    <span class="out-arrow"></span>
+                    <span class="msg-timer r-time">{{convertDateToTime(message.date)}}</span>
+                    <span class="drop-menu r-drop">
+                        <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
+                        <span class="r-dropped droppedMenu" v-show="message.popupActive">
+                            <div>message info</div>
+                            <div @click="deleteMsg(index)">delete message</div>
+                        </span>
+                    </span>
+                  
+                </div>                
+                <div class="chatIn box-pad" v-else>   
+                    <div class=" inMsg">{{message.text}}</div>
+                    <span class="in-arrow"></span>
+                    <span class="msg-timer l-time">{{convertDateToTime(message.date)}}</span>
+                    <span class="drop-menu l-drop" >
+                        <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
+                        <span class="l-dropped droppedMenu" v-if="message.popupActive">
+                            <div>message info</div>
+                            <div @click="deleteMsg(index)">delete message</div>
+                        </span>
+                    </span>
+                </div>   
+            </div>            -->

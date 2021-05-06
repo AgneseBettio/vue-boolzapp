@@ -52,13 +52,8 @@ const app = new Vue({
         //funzione per aprire tendina 
         showDroppedMenu(i) {
             let currentMessage = this.activeChat.messages[i];
-
-            currentMessage.popupActive = true
-        },
-        //funzione per chiudere tendina 
-        closeDrop() {
-            
-        },    
+            currentMessage.popupActive = !currentMessage.popupActive
+        },  
         //funzione per cancellare messaggio
         deleteMsg(index) {
             return this.activeChat.messages.splice(index, 1)
@@ -81,11 +76,11 @@ const app = new Vue({
         },
         //creo funzione per recuperare ultimo messaggio utente 
         //Questa per ultimo messagio chat attiva - devo cambiare ciclo v-for
-        lastReceivedMessage() {
-            const lastReceivedText = this.activeChat.messages.filter((msg) => msg.status === 'received');
-            const lastText = lastReceivedText[lastReceivedText.length - 1].text
-            return lastText;
-        }
+        // lastReceivedMessage() {
+        //     const lastReceivedText = this.activeChat.messages.filter((msg) => msg.status === 'received');
+        //     const lastText = lastReceivedText[lastReceivedText.length - 1].text
+        //     return lastText;
+        // }
     },
 
 });
