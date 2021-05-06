@@ -56,6 +56,7 @@ const app = new Vue({
         deleteMsg(index) {
             return this.activeChat.messages.splice(index, 1)
         },
+        //milestone 5 - recupero ultimo messaggio e accesso
         lastReceivedMessage(i) {
             const lastReceivedText = this.usersList[i].messages.filter((msg) => msg.status === 'received');
             const lastText = lastReceivedText[lastReceivedText.length - 1].text
@@ -80,8 +81,7 @@ const app = new Vue({
                 return element.name.toLowerCase().startsWith(this.searchContact.toLowerCase());
             });
         },
-        //creo funzione per recuperare ultimo messaggio utente 
-        //Questa per ultimo messagio chat attiva - devo cambiare ciclo v-for
+ 
     },
 
 });
