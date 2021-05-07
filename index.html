@@ -52,7 +52,7 @@
                     <span class="search-icon">
                         <i class="fa fa-search" aria-hidden="true"></i>
                     </span>
-                    <input type="text" v-model="searchContact" placeholder="Cerca o inizia una nuova chat">
+                    <input type="text" v-model="searchContact" @click.esc="searchContact = ''" placeholder="Cerca o inizia una nuova chat">
                     <span class="search-icon" v-if="searchContact" @click="searchContact = ''">
                         <i class="fa fa-times" aria-hidden="true"></i>
                     </span>                    
@@ -67,9 +67,9 @@
                     </div>
                     <div class="messagePreview growth1 f-col box-pad">
                         <h5>{{contact.name}}</h5>
-                        <p> {{lastReceivedMessage(index)}} <span> {{selectLastAccess(index)}} </span></p>
+                        <p> {{lastReceivedMessage(index)}}<span>{{selectLastAccess(index)}}</span></p>
                     </div>
-                </div>òl
+                </div>
             </div>
         </div>
         <div class="box chatDesk">
@@ -99,7 +99,7 @@
                 </div>
 
             </div>
-            <div class="chatArea box-pad" >
+            <div class="chatArea" ref="chatAreaToScroll">
                 <div class="chat" v-for="(message,index) in activeChat.messages" :key="index"
                     :class="{chatIn: message.status === 'received',
                     chatOut: message.status === 'sent'}">
@@ -109,7 +109,7 @@
                     </div>
                     <i class="fa fa-chevron-down drop-menu" @click="showDroppedMenu(index)"></i>
                     <div class="droppedMenu" v-if="message.popupActive">
-                        <p>message info</p>
+                        <p @click="hideDroppedMenu(index)">message info</p>
                         <p @click="deleteMsg(index)">delete message</p>
                     </div>
                     <div class="msg-timer">{{convertDateToTime(message.date)}}</div>
