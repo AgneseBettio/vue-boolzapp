@@ -13,6 +13,9 @@ const app = new Vue({
     computed: {
         //creo funzione per recuperare ultimo accesso utente  
         ActiveChatLastAccess() {
+            if(!this.activeChat.messages){
+                return ""
+            }
             const lastReceivedMsg = this.activeChat.messages.filter((mgs) => mgs.status === 'received');
             const lastMsgDate = lastReceivedMsg[lastReceivedMsg.length - 1].date
             return this.convertDateToTime(lastMsgDate)
@@ -109,6 +112,9 @@ const app = new Vue({
             }
         },
         selectLastAccess(i) {
+            if(!this.searchAContactList[i].messages){
+                return ""
+            }
             const chatMsg = this.searchAContactList[i].messages;
             const lastMsgDate = chatMsg[chatMsg.length - 1].date
             return this.convertDateToTime(lastMsgDate)

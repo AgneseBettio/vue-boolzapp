@@ -78,7 +78,7 @@ const usersList = [
         ],
     },
     {
-        name: 'Luisa',
+        name: 'Luigi',
         avatar: 'img/avatar_3.jpg',
         visible: true,
         messages: [
