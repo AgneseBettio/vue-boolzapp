@@ -138,30 +138,3 @@
 </html>
 
 
-            <!-- <div v-for="(message,index) in activeChat.messages" v-if="activeChat">        
-                <div class="chatOut box-pad" v-if="message.status === 'sent' ">  
-                    <div class="outMsg">{{message.text}}</div>
-                    <span class="out-arrow"></span>
-                    <span class="msg-timer r-time">{{convertDateToTime(message.date)}}</span>
-                    <span class="drop-menu r-drop">
-                        <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
-                        <span class="r-dropped droppedMenu" v-show="message.popupActive">
-                            <div>message info</div>
-                            <div @click="deleteMsg(index)">delete message</div>
-                        </span>
-                    </span>
-                  
-                </div>                
-                <div class="chatIn box-pad" v-else>   
-                    <div class=" inMsg">{{message.text}}</div>
-                    <span class="in-arrow"></span>
-                    <span class="msg-timer l-time">{{convertDateToTime(message.date)}}</span>
-                    <span class="drop-menu l-drop" >
-                        <i class="fa fa-chevron-down" @click="showDroppedMenu(index)"></i>
-                        <span class="l-dropped droppedMenu" v-if="message.popupActive">
-                            <div>message info</div>
-                            <div @click="deleteMsg(index)">delete message</div>
-                        </span>
-                    </span>
-                </div>   
-            </div>            -->
